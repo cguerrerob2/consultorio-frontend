@@ -10,6 +10,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CitasComponent } from './components/citas/citas.component';
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { PaymentsComponent } from './components/payments/payments.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

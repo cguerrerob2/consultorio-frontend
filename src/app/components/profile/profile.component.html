@@ -16,58 +16,91 @@
     
           <!-- Botón para editar -->
           <div class="mt-4">
-            <button onclick="toggleEditMode()" class="px-4 py-2 bg-blue-500 text-white rounded-md">Editar Perfil</button>
+            <button (click)="toggleModal()" class="px-4 py-2 bg-blue-500 text-white rounded-md">Editar Perfil</button>
           </div>
     </div>
     
 </div>
 
+<div *ngIf="isOpen" class="modal">
+  <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <!--
+        Background backdrop, show/hide based on modal state.
     
-
-  <!-- Modal -->
-  <!-- <h1 class="text-2xl font-semibold mb-4">Editar Perfil Personal</h1>
-
-    <form>
-      <div class="mb-4">
-        <label for="name" class="block text-sm font-medium text-gray-600">Nombres y apellidos</label>
-        <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md">
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    
+      <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <!--
+            Modal panel, show/hide based on modal state.
+    
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+          <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              <div class="">
+                <h1 class="mt-3 text-2xl font-bold mb-5">Editar Perfil</h1>
+                <form>
+                  <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-600">Nombres y apellidos</label>
+                    <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+            
+                  <div class="mb-4">
+                    <label for="birthdate" class="block text-sm font-medium text-gray-600">Fecha de nacimiento</label>
+                    <input type="date" id="birthdate" name="birthdate" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+            
+                  <div class="mb-4">
+                    <label for="height" class="block text-sm font-medium text-gray-600">Talla</label>
+                    <input type="text" id="height" name="height" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+            
+                  <div class="mb-4">
+                    <label for="weight" class="block text-sm font-medium text-gray-600">Peso</label>
+                    <input type="text" id="weight" name="weight" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+            
+                  <div class="mb-4">
+                    <label for="gender" class="block text-sm font-medium text-gray-600">Sexo</label>
+                    <select id="gender" name="gender" class="mt-1 p-2 w-full border rounded-md">
+                      <option value="male">Masculino</option>
+                      <option value="female">Femenino</option>
+                      <option value="other">Otro</option>
+                    </select>
+                  </div>
+            
+                  <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-600">Número de celular</label>
+                    <input type="tel" id="phone" name="phone" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+            
+                  <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-600">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto" (click)="toggleModal()">Accept</button>
+              <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" (click)="toggleModal()">Cancel</button>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="mb-4">
-        <label for="birthdate" class="block text-sm font-medium text-gray-600">Fecha de nacimiento</label>
-        <input type="date" id="birthdate" name="birthdate" class="mt-1 p-2 w-full border rounded-md">
-      </div>
-
-      <div class="mb-4">
-        <label for="height" class="block text-sm font-medium text-gray-600">Talla</label>
-        <input type="text" id="height" name="height" class="mt-1 p-2 w-full border rounded-md">
-      </div>
-
-      <div class="mb-4">
-        <label for="weight" class="block text-sm font-medium text-gray-600">Peso</label>
-        <input type="text" id="weight" name="weight" class="mt-1 p-2 w-full border rounded-md">
-      </div>
-
-      <div class="mb-4">
-        <label for="gender" class="block text-sm font-medium text-gray-600">Sexo</label>
-        <select id="gender" name="gender" class="mt-1 p-2 w-full border rounded-md">
-          <option value="male">Masculino</option>
-          <option value="female">Femenino</option>
-          <option value="other">Otro</option>
-        </select>
-      </div>
-
-      <div class="mb-4">
-        <label for="phone" class="block text-sm font-medium text-gray-600">Número de celular</label>
-        <input type="tel" id="phone" name="phone" class="mt-1 p-2 w-full border rounded-md">
-      </div>
-
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-600">Correo electrónico</label>
-        <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md">
-      </div>
-
-      <div class="mt-4">
-        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Guardar Cambios</button>
-      </div>
-    </form> -->
+    </div>
+    
+</div>

@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  constructor() { }
+
+  isOpen = false;
+
+  toggleModal() {
+    this.isOpen = !this.isOpen;
+  }
+
 }
