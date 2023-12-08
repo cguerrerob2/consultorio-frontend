@@ -18,12 +18,13 @@ export class LoginComponent implements OnInit {
   public loginSuccess = false;
   public loginError = false;
   public loginForm!:FormGroup;
+  public isAdmin = false;
 
   constructor(
     private usersApiService: UsersApiService,
     private router: Router, 
     private fb:FormBuilder, 
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   private createLoginForm(): FormGroup {
@@ -54,14 +55,14 @@ export class LoginComponent implements OnInit {
   
           this.loginSuccess = true;
           setInterval(() => {
-            this.router.navigate(['/home']);
+            // this.router.navigate(['/home']);
             this.loginSuccess = false;
           }, 1000);
         } else {
           // Datos incorrectos
           setInterval(() => {
             this.loginError = true;
-          }, 2000);
+          }, 3000);
         }
       }
     } catch (error) {

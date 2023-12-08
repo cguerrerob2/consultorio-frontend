@@ -9,17 +9,27 @@
         <h2 class="text-2xl font-semibold text-center mb-4">Iniciar Sesion</h2>
         <p class="text-gray-600 text-center mb-6">Enter your details to log in.</p>
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-            <div class="mb-4">
+            <div class="mb-4" [ngClass]="{ 'has-error': loginForm.get('correo')?.hasError('required') }">
                 <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email Address *</label>
-                <input formControlName="correo" name="correo" [(ngModel)]="credenciales.correo" type="email" id="email" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="hello@alignui.com">
-            </div>
-            <div class="mb-6">
+                <input formControlName="correo" name="correo" [(ngModel)]="credenciales.correo" type="email" id="email"
+                  class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500"
+                  required placeholder="hello@alignui.com">
+                <div *ngIf="loginForm.get('correo')?.hasError('required')" class="text-red-600 text-xs mt-1">Email is required</div>
+              </div>
+              
+              <div class="mb-6" [ngClass]="{ 'has-error': loginForm.get('password')?.hasError('required') }">
                 <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">Password *</label>
-                <input formControlName="password" name="password" [(ngModel)]="credenciales.password" type="password" id="password" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="••••••••">
+                <input formControlName="password" name="password" [(ngModel)]="credenciales.password" type="password"
+                  id="password" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500"
+                  required placeholder="••••••••">
+                <div *ngIf="loginForm.get('correo')?.hasError('required')" class="text-red-600 text-xs mt-1">Password is required</div>
                 <p class="text-gray-600 text-xs mt-1">Must contain 1 uppercase letter, 1 number, min. 8 characters.</p>
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Log In</button>
-        </form>
+            <button type="submit"
+              class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              Log In
+            </button>
+          </form>
     </div>
 </div>
 
