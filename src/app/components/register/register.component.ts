@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Data, Router } from '@angular/router';
 import { UsersApiService, Usuario } from 'src/@api/users-api.service';
 

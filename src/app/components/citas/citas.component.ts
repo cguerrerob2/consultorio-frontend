@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { TemplateRef } from '@angular/core';
 import { Cita, CitasService } from 'src/@api/citas.service';
 @Component({
